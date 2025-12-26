@@ -10,7 +10,7 @@ function App() {
 
       {/* Botón WhatsApp */}
       <a
-        href="https://wa.me/34600123456?text=Hola%20vi%20su%20web%20y%20necesito%20un%20electricista%20en%20Valladolid"
+        href="https://wa.me/34641847249?text=Hola%20vi%20su%20web%20y%20necesito%20un%20electricista%20en%20Valladolid"
         target="_blank"
         rel="noopener noreferrer"
         style={{
