@@ -13,7 +13,7 @@ function App() {
         rel="noopener noreferrer"
         style={{
           position: "fixed",
-          bottom: "20px",
+          bottom: "100px",
           right: "20px",
           width: "60px",
           height: "60px",
