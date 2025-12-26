@@ -3,10 +3,8 @@ import { AppRoutes } from './router'
 
 function App() {
   return (
-    <>
-      <BrowserRouter basename={_BASE_PATH_}>
-        <AppRoutes />
-      </BrowserRouter>
+    <BrowserRouter>
+      <AppRoutes />
 
       {/* Botón WhatsApp */}
       <a
@@ -35,7 +33,7 @@ function App() {
           height="32"
         />
       </a>
-    </>
+    </BrowserRouter>
   )
 }
 
