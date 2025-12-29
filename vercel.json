@@ -8,12 +8,5 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "https://www.electrovalladolid.com",
-      "permanent": true
-    }
   ]
 }
