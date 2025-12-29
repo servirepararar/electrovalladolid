@@ -1,12 +1,19 @@
 {
   "rewrites": [
     {
-      "source": "/ctrbox-simple.html",
-      "destination": "/ctrbox-simple.html"
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
     },
     {
       "source": "/(.*)",
       "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://www.electrovalladolid.com",
+      "permanent": true
     }
   ]
 }
