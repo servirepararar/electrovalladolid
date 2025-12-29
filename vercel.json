@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/ctrbox-simple.html",
+      "destination": "/ctrbox-simple.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
