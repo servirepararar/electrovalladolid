@@ -25,6 +25,12 @@ export default function Home() {
       icon: 'ri-settings-line'
     },
     {
+      id: 'mantenimiento',
+      title: 'Mantenimiento',
+      description: 'Mantenimiento de aire acondicionado',
+      icon: 'ri-settings-line'
+    },
+    {
       id: 'certificaciones',
       title: 'Certificaciones',
       description: 'Certificados e inspecciones eléctricas oficiales',
