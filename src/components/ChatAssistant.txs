@@ -1,20 +1,33 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, FormEvent } from "react";
 import emailjs from "@emailjs/browser";
 
-const ChatAssistant = () => {
-  const [step, setStep] = useState(0);
-  const [formData, setFormData] = useState({
+interface FormData {
+  name: string;
+  phone: string;
+  service: string;
+  date: string;
+  urgent: string;
+}
+
+interface Message {
+  type: "bot" | "user";
+  text: string;
+}
+
+const ChatAssistant: React.FC = () => {
+  const [step, setStep] = useState<number>(0);
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
     service: "",
     date: "",
     urgent: "",
   });
-  const [messages, setMessages] = useState([]);
-  const inputRef = useRef(null);
-  const chatEndRef = useRef(null);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const chatEndRef = useRef<HTMLDivElement>(null);
 
-  const questions = [
+  const questions: string[] = [
     "Hola 👋, ¿cuál es tu nombre?",
     "¿Cuál es tu teléfono?",
     "¿Qué servicio necesitas?",
@@ -29,11 +42,12 @@ const ChatAssistant = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleAnswer = (answer) => {
-    const fields = ["name", "phone", "service", "date", "urgent"];
+  const handleAnswer = (answer: string) => {
+    const fields: (keyof FormData)[] = ["name", "phone", "service", "date", "urgent"];
     setFormData({ ...formData, [fields[step]]: answer });
 
     setMessages((prev) => [...prev, { type: "user", text: answer }]);
+
     if (step + 1 < questions.length) {
       setStep(step + 1);
       setMessages((prev) => [...prev, { type: "bot", text: questions[step + 1] }]);
@@ -42,7 +56,7 @@ const ChatAssistant = () => {
     }
   };
 
-  const sendEmail = (data) => {
+  const sendEmail = (data: FormData) => {
     emailjs
       .send(
         "service_mi4gden",       // Tu Service ID
@@ -56,12 +70,12 @@ const ChatAssistant = () => {
       );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const answer = inputRef.current.value.trim();
+    const answer = inputRef.current?.value.trim();
     if (!answer) return;
     handleAnswer(answer);
-    inputRef.current.value = "";
+    if (inputRef.current) inputRef.current.value = "";
   };
 
   return (
