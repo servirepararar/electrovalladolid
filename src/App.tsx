@@ -1,10 +1,14 @@
 import { BrowserRouter } from 'react-router-dom'
 import { AppRoutes } from './router'
+import ChatAssistant from "./components/ChatAssistant" // <-- Importamos el chat
 
 function App() {
   return (
     <BrowserRouter>
       <AppRoutes />
+
+      {/* Chat inteligente */}
+      <ChatAssistant /> {/* <-- Aquí agregamos el chat */}
 
       {/* Botón WhatsApp */}
       <a
