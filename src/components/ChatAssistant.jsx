@@ -1,0 +1,122 @@
+import React, { useState, useEffect, useRef } from "react";
+import emailjs from "@emailjs/browser";
+
+const ChatAssistant = () => {
+  const [step, setStep] = useState(0);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    service: "",
+    date: "",
+    urgent: "",
+  });
+  const [messages, setMessages] = useState([]);
+  const inputRef = useRef(null);
+  const chatEndRef = useRef(null);
+
+  const questions = [
+    "Hola 👋, ¿cuál es tu nombre?",
+    "¿Cuál es tu teléfono?",
+    "¿Qué servicio necesitas?",
+    "¿Para qué fecha es la cita?",
+    "¿Es urgente? (Sí/No)",
+  ];
+
+  useEffect(() => {
+    if (messages.length === 0) {
+      setMessages([{ type: "bot", text: questions[0] }]);
+    }
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const handleAnswer = (answer) => {
+    const fields = ["name", "phone", "service", "date", "urgent"];
+    setFormData({ ...formData, [fields[step]]: answer });
+
+    setMessages((prev) => [...prev, { type: "user", text: answer }]);
+    if (step + 1 < questions.length) {
+      setStep(step + 1);
+      setMessages((prev) => [...prev, { type: "bot", text: questions[step + 1] }]);
+    } else {
+      sendEmail({ ...formData, [fields[step]]: answer });
+    }
+  };
+
+  const sendEmail = (data) => {
+    emailjs
+      .send(
+        "service_mi4gden",       // Tu Service ID
+        "template_2wv4pyi",      // Tu Template ID
+        data,
+        "cDsD12TAj0cTyQBr_"      // Tu Public Key
+      )
+      .then(
+        () => setMessages((prev) => [...prev, { type: "bot", text: "¡Cita enviada correctamente! ✅" }]),
+        () => setMessages((prev) => [...prev, { type: "bot", text: "Error al enviar 😢" }])
+      );
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const answer = inputRef.current.value.trim();
+    if (!answer) return;
+    handleAnswer(answer);
+    inputRef.current.value = "";
+  };
+
+  return (
+    <div style={{
+      maxWidth: "400px",
+      margin: "20px auto",
+      border: "1px solid #ccc",
+      borderRadius: "10px",
+      padding: "10px",
+      fontFamily: "Arial, sans-serif",
+      background: "#f9f9f9"
+    }}>
+      <div style={{ maxHeight: "400px", overflowY: "auto", marginBottom: "10px" }}>
+        {messages.map((msg, idx) => (
+          <div key={idx} style={{
+            textAlign: msg.type === "bot" ? "left" : "right",
+            margin: "5px 0"
+          }}>
+            <span style={{
+              display: "inline-block",
+              padding: "8px 12px",
+              borderRadius: "20px",
+              background: msg.type === "bot" ? "#eee" : "#007bff",
+              color: msg.type === "bot" ? "#000" : "#fff",
+              maxWidth: "80%"
+            }}>
+              {msg.text}
+            </span>
+          </div>
+        ))}
+        <div ref={chatEndRef}></div>
+      </div>
+
+      {step < questions.length && (
+        <form onSubmit={handleSubmit} style={{ display: "flex" }}>
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Escribe tu respuesta..."
+            style={{ flex: 1, padding: "8px", borderRadius: "20px 0 0 20px", border: "1px solid #ccc" }}
+          />
+          <button type="submit" style={{
+            padding: "8px 15px",
+            border: "none",
+            borderRadius: "0 20px 20px 0",
+            background: "#007bff",
+            color: "#fff",
+            cursor: "pointer"
+          }}>
+            Enviar
+          </button>
+        </form>
+      )}
+    </div>
+  );
+};
+
+export default ChatAssistant;
