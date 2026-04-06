@@ -30,7 +30,7 @@ const ChatAssistant: React.FC = () => {
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   const questions: string[] = [
-    "Hola 👋, somos ElectroValladolid, es ungusto poder atenderte, para poder agendar una cita, ¿puedes decirme cuál es tu nombre?",
+    "Hola 👋, somos ElectroValladolid, es un gusto poder atenderte, para poder agendarte una cita, ¿puedes decirme cuál es tu nombre?",
     "Ok, ahora ¿Cuál es tu numero de teléfono?",
     "¿Puedes indicarme el servicio que necesitas?",
     "Una cosa mas ¿Cual es tu direccion?",
@@ -86,7 +86,7 @@ const ChatAssistant: React.FC = () => {
         () =>
           setMessages((prev) => [
             ...prev,
-            { type: "bot", text: "¡Cita enviada correctamente! ✅" },
+            { type: "bot", text: "¡Listo, tu cita ha sido enviada correctamente! ✅ Te contactaremos lo mas pronto posible 👨‍🔧" },
           ]),
         () =>
           setMessages((prev) => [
