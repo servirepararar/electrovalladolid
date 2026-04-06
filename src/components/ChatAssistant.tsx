@@ -30,10 +30,10 @@ const ChatAssistant: React.FC = () => {
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   const questions: string[] = [
-    "Hola 👋, ¿cuál es tu nombre?",
-    "¿Cuál es tu teléfono?",
-    "¿Qué servicio necesitas?",
-    "¿Para qué fecha es la cita?",
+    "Hola 👋, somos ElectroValladolid, es ungusto poder atenderte, para poder agendar una cita, ¿puedes decirme cuál es tu nombre?",
+    "Ok, ahora ¿Cuál es tu numero de teléfono?",
+    "¿Puedes indicarme el servicio que necesitas?",
+    "Una cosa mas ¿Cual es tu direccion?",
     "¿Es urgente? (Sí/No)",
   ];
 
@@ -45,30 +45,54 @@ const ChatAssistant: React.FC = () => {
   }, [messages, isOpen]);
 
   const handleAnswer = (answer: string) => {
-    const fields: (keyof FormData)[] = ["name", "phone", "service", "date", "urgent"];
-    setFormData({ ...formData, [fields[step]]: answer });
+    const fields: (keyof FormData)[] = [
+      "name",
+      "phone",
+      "service",
+      "date",
+      "urgent",
+    ];
+
+    setFormData((prev) => ({
+      ...prev,
+      [fields[step]]: answer,
+    }));
 
     setMessages((prev) => [...prev, { type: "user", text: answer }]);
 
     if (step + 1 < questions.length) {
       setStep(step + 1);
-      setMessages((prev) => [...prev, { type: "bot", text: questions[step + 1] }]);
+      setMessages((prev) => [
+        ...prev,
+        { type: "bot", text: questions[step + 1] },
+      ]);
     } else {
-      sendEmail({ ...formData, [fields[step]]: answer });
+      sendEmail({
+        ...formData,
+        [fields[step]]: answer,
+      });
     }
   };
 
   const sendEmail = (data: FormData) => {
     emailjs
       .send(
-        "service_mi4gden",       // Tu Service ID
-        "template_2wv4pyi",      // Tu Template ID
+        "service_mi4gden",
+        "template_2wv4pyi",
         data,
-        "cDsD12TAj0cTyQBr_"      // Tu Public Key
+        "cDsD12TAj0cTyQBr_"
       )
       .then(
-        () => setMessages((prev) => [...prev, { type: "bot", text: "¡Cita enviada correctamente! ✅" }]),
-        () => setMessages((prev) => [...prev, { type: "bot", text: "Error al enviar 😢" }])
+        () =>
+          setMessages((prev) => [
+            ...prev,
+            { type: "bot", text: "¡Cita enviada correctamente! ✅" },
+          ]),
+        () =>
+          setMessages((prev) => [
+            ...prev,
+            { type: "bot", text: "Error al enviar 😢" },
+          ])
       );
   };
 
@@ -80,8 +104,8 @@ const ChatAssistant: React.FC = () => {
     if (inputRef.current) inputRef.current.value = "";
   };
 
+  // 💙 BOTÓN FLOTANTE PRO (AZUL REY)
   if (!isOpen) {
-    // Botón flotante inicial
     return (
       <button
         onClick={() => setIsOpen(true)}
@@ -89,19 +113,29 @@ const ChatAssistant: React.FC = () => {
           position: "fixed",
           bottom: "20px",
           right: "20px",
-          width: "60px",
-          height: "60px",
-          borderRadius: "50%",
-          background: "#007bff",
+          padding: "12px 16px",
+          borderRadius: "14px",
+          background: "linear-gradient(135deg, #1d4ed8, #2563eb)",
           color: "white",
           border: "none",
-          fontSize: "24px",
+          fontSize: "14px",
+          fontWeight: "600",
           cursor: "pointer",
           zIndex: 9999,
-          boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          transition: "all 0.2s ease",
+        }}
+        onMouseOver={(e) => {
+          (e.currentTarget.style.transform = "scale(1.05)");
+        }}
+        onMouseOut={(e) => {
+          (e.currentTarget.style.transform = "scale(1)");
         }}
       >
-        💬
+        🤖 Asistente Virtual
       </button>
     );
   }
@@ -125,13 +159,13 @@ const ChatAssistant: React.FC = () => {
         flexDirection: "column",
       }}
     >
-      {/* Header con botón cerrar */}
+      {/* HEADER */}
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          background: "#007bff",
+          background: "linear-gradient(135deg, #1d4ed8, #2563eb)",
           color: "white",
           padding: "8px 12px",
           borderRadius: "8px 8px 0 0",
@@ -152,7 +186,7 @@ const ChatAssistant: React.FC = () => {
         </button>
       </div>
 
-      {/* Mensajes */}
+      {/* MENSAJES */}
       <div
         style={{
           flexGrow: 1,
@@ -177,7 +211,8 @@ const ChatAssistant: React.FC = () => {
                 display: "inline-block",
                 padding: "8px 12px",
                 borderRadius: "20px",
-                background: msg.type === "bot" ? "#eee" : "#007bff",
+                background:
+                  msg.type === "bot" ? "#eee" : "#1d4ed8",
                 color: msg.type === "bot" ? "#000" : "#fff",
                 maxWidth: "80%",
               }}
@@ -189,9 +224,12 @@ const ChatAssistant: React.FC = () => {
         <div ref={chatEndRef}></div>
       </div>
 
-      {/* Input */}
+      {/* INPUT */}
       {step < questions.length && (
-        <form onSubmit={handleSubmit} style={{ display: "flex", marginTop: "5px" }}>
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: "flex", marginTop: "5px" }}
+        >
           <input
             ref={inputRef}
             type="text"
@@ -209,7 +247,7 @@ const ChatAssistant: React.FC = () => {
               padding: "8px 15px",
               border: "none",
               borderRadius: "0 20px 20px 0",
-              background: "#007bff",
+              background: "#1d4ed8",
               color: "#fff",
               cursor: "pointer",
             }}
