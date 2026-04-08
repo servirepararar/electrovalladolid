@@ -144,8 +144,8 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
-                Electricista Profesional en 
-                <span className="text-teal-400 block">Valladolid</span>
+                ELECTRICISTAS PROFESIONALES EN  
+                <span className="text-teal-400 block">VALLADOLID</span>
               </h1>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
                 Más de 15 años ofreciendo servicios eléctricos de calidad. Instalaciones, reparaciones 24h, mantenimiento y certificaciones oficiales.
