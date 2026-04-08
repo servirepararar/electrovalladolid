@@ -148,7 +148,7 @@ export default function Home() {
                 <span className="text-teal-400 block">VALLADOLID</span>
               </h1>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Más de 15 años ofreciendo servicios eléctricos de calidad. Instalaciones, reparaciones 24h, mantenimiento y certificaciones oficiales.
+                En ElectroValladolid ofrecemos servicios profesionales de electricista en Valladolid, especializados en instalaciones eléctricas, boletines eléctricos (certificado de instalación), altas de luz, mantenimiento y reparaciones, incluyendo urgencias eléctricas 24 horas. Trabajamos con rapidez, garantía y precios competitivos en viviendas, locales y empresas, cumpliendo con la normativa vigente y ofreciendo atención inmediata en toda Valladolid y alrededores.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a href="#contacto" className="bg-teal-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-teal-700 transition-colors text-center whitespace-nowrap cursor-pointer">
