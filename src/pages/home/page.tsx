@@ -14,7 +14,7 @@ export default function Home() {
     },
     {
       id: 'reparaciones',
-      title: 'Reparaciones 24h',
+      title: 'Reparaciones y urgencias 24 horas',
       description: 'Servicio de emergencia disponible las 24 horas',
       icon: 'ri-tools-line'
     },
@@ -41,6 +41,18 @@ export default function Home() {
       title: 'Domótica',
       description: 'Automatización del hogar y sistemas inteligentes',
       icon: 'ri-smartphone-line'
+    },
+    {
+      id: 'boletines electricos',
+      title: 'boletines electricos',
+      description: 'Emision de boletines electricos, certificados en Valladolid',
+      icon: 'ri-smartphone-line'
+    },
+    {
+      id: 'instalacion de cargadores para coches electricos',
+      title: 'instalacion de cargadores para coches electricos',
+      description: 'Instalacion de cargadores electricos en Valladolid, rapida, segura y certificada',
+      icon: 'ri-tools-line'
     },
     {
       id: 'led',
