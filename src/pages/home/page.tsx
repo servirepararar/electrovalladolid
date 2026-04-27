@@ -20,14 +20,14 @@ export default function Home() {
     },
     {
       id: 'mantenimiento',
-      title: 'Mantenimiento',
-      description: 'Mantenimiento preventivo de instalaciones eléctricas',
+      title: 'Mantenimiento y reparacion',
+      description: 'Mantenimiento preventivo y reparacion de instalaciones eléctricas',
       icon: 'ri-settings-line'
     },
     {
       id: 'mantenimiento',
       title: 'Mantenimiento',
-      description: 'Mantenimiento de aire acondicionado',
+      description: 'Mantenimiento y reparacion de aire acondicionado',
       icon: 'ri-settings-line'
     },
     {
@@ -156,8 +156,8 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight mb-6">
-                ELECTRICISTAS PROFESIONALES EN  
-                <span className="text-teal-400 block">VALLADOLID</span>
+                ELECTRICISTAS PROFESIONALES EN VALLADOLID.
+                <span className="text-teal-400 block">SERVICIOS DE URGENCIAS 24 HORAS</span>
               </h1>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
                 En ElectroValladolid ofrecemos servicios profesionales de electricista en Valladolid, especializados en instalaciones eléctricas, boletines eléctricos (certificado de instalación), altas de luz, mantenimiento y reparaciones, incluyendo urgencias eléctricas 24 horas. Trabajamos con rapidez, garantía y precios competitivos en viviendas, locales y empresas, cumpliendo con la normativa vigente y ofreciendo atención inmediata en toda Valladolid y alrededores.
